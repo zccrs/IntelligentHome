@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/room.jpg</file>
+        <file>images/unfold_icon.png</file>
+        <file>images/delete_icon.png</file>
+        <file>images/delete_icon_pressed.png</file>
+        <file>images/unfold_icon_pressed.png</file>
+        <file>images/back_icon.png</file>
+        <file>images/lighting_icon.png</file>
+        <file>images/air-conditioner_icon.png</file>
+        <file>images/camera_icon.png</file>
+        <file>images/curtain_icon.png</file>
+        <file>images/jack_icon.png</file>
+        <file>images/television_icon.png</file>
+        <file>images/logo.png</file>
+        <file>images/setting_logo.png</file>
+        <file>images/setting_logo_background.png</file>
+        <file>images/cuttingLine.png</file>
+        <file>images/edit_icon.png</file>
+        <file>images/add_icon.png</file>
+        <file>images/go_home_icon.jpg</file>
+        <file>images/go_out_icon.jpg</file>
+        <file>images/meeting_icon.jpg</file>
+        <file>images/rest_icon.jpg</file>
+        <file>images/sleep_icon.jpg</file>
+    </qresource>
+</RCC>

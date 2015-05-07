@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/MainPage.qml</file>
+        <file>qml/LoginPage.qml</file>
+        <file>qml/Component/MyComboBox.qml</file>
+        <file>qml/RegisterAccount.qml</file>
+        <file>qml/AboutPage.qml</file>
+        <file>qml/SettingsPage.qml</file>
+        <file>qml/StackPage.qml</file>
+        <file>qml/Component/CuttingLine.qml</file>
+        <file>qml/Component/MySwitch.qml</file>
+        <file>qml/ManagePage.qml</file>
+        <file>qml/Component/TreeView.qml</file>
+        <file>qml/Component/TreeViewDelegate.qml</file>
+        <file>qml/RoomPage.qml</file>
+        <file>qml/Component/InputDialog.qml</file>
+        <file>qml/ProfilesPage.qml</file>
+        <file>qml/ProfilesSettings.qml</file>
+    </qresource>
+</RCC>
