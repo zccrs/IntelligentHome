@@ -23,5 +23,6 @@
         <file>images/meeting_icon.jpg</file>
         <file>images/rest_icon.jpg</file>
         <file>images/sleep_icon.jpg</file>
+        <file>images/setting_icon.png</file>
     </qresource>
 </RCC>

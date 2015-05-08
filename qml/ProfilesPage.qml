@@ -109,7 +109,7 @@ StackPage{
             Timer{
                 id: timer
 
-                interval: 1200
+                interval: 1000
                 onTriggered: {
                     contextMenu.popup()
                 }

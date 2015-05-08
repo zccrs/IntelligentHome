@@ -11,7 +11,7 @@ StackPage{
         anchors{
             top: parent.top
             left: parent.left
-            margins: 10
+            margins: 10*screen.physicalDotsPerInch/160
         }
     }
     Text{
@@ -21,7 +21,7 @@ StackPage{
             left: icon.right
             right: parent.right
             verticalCenter: icon.verticalCenter
-            margins: 10
+            margins: 10*screen.physicalDotsPerInch/160
         }
         font.pointSize: 24
     }
@@ -31,11 +31,11 @@ StackPage{
 
         anchors{
             top: icon.bottom
-            margins: 20
+            margins: 30*screen.physicalDotsPerInch/160
             bottom: add_button.top
         }
         width: parent.width
-        spacing: 10
+        spacing: 10*screen.physicalDotsPerInch/160
         clip: true
 
         model: ListModel{
@@ -49,14 +49,14 @@ StackPage{
 
         delegate: Item{
             width: parent.width
-            height: text_actionName.implicitHeight
+            height: text_actionName.implicitHeight+20
             Text{
                 id: text_actionName
 
                 anchors{
                     left: parent.left
                     right: delete_icon.left
-                    margins: 10
+                    margins: 10*screen.physicalDotsPerInch/160
                 }
                 font.pointSize: 22
                 text: actionName
@@ -69,7 +69,7 @@ StackPage{
                         +(deleteButtonMouse.pressed?"_pressed":"")+".png"
                 anchors{
                     right: parent.right
-                    rightMargin: 10
+                    rightMargin: 10*screen.physicalDotsPerInch/160
                     verticalCenter: parent.verticalCenter
                 }
                 sourceSize.height: parent.height
@@ -82,6 +82,18 @@ StackPage{
                         listview.model.remove(index, 1)
                     }
                 }
+            }
+
+            Rectangle{
+                anchors{
+                    left: parent.left
+                    right: parent.right
+                    rightMargin: 10*screen.physicalDotsPerInch/160
+                    leftMargin: 10*screen.physicalDotsPerInch/160
+                    bottom: parent.bottom
+                }
+                height: 1
+                color: "#b0b0b0"
             }
         }
     }
@@ -97,7 +109,7 @@ StackPage{
         text: qsTr("add action")
 
         onClicked: {
-
+            view.push(Qt.resolvedUrl("ActionSelectionPage.qml"))
         }
     }
 }

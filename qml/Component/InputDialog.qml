@@ -1,8 +1,9 @@
 import QtQuick 2.4
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
+import QtGraphicalEffects 1.0
 
-MouseArea{
+Window{
     id: root
 
     property alias title: title.text
@@ -11,14 +12,40 @@ MouseArea{
     signal cancle
     signal ok
 
-    anchors.fill: parent
-    visible: false
+    flags: flags|Qt.WindowStaysOnTopHint
+    color: "transparent"
+    modality: Qt.WindowModal
 
     function open(){
-        visible = true
+        root.show()
     }
 
     Rectangle{
+        anchors.fill: parent
+        color: "black"
+        opacity: 0.2
+
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                close()
+                root.visible = false
+            }
+        }
+    }
+
+    RectangularGlow {
+        id: effect
+        anchors.fill: rect_dialog
+        glowRadius: 8*screen.physicalDotsPerInch/160
+        spread: 0.1
+        color: "black"
+        cornerRadius: rect_dialog.radius + glowRadius
+    }
+
+    Rectangle{
+        id: rect_dialog
+
         width: Screen.width*2/3
         height: title.implicitHeight+input.height+button_cancle.height+40
         anchors.centerIn: parent
@@ -54,7 +81,7 @@ MouseArea{
                     text: qsTr("Cancle")
                     onClicked: {
                         root.cancle()
-                        root.visible = false
+                        root.close()
                     }
                 }
 
@@ -64,14 +91,10 @@ MouseArea{
 
                     onClicked: {
                         root.ok()
-                        root.visible = false
+                        root.close()
                     }
                 }
             }
         }
-    }
-
-    onClicked: {
-        visible = false
     }
 }

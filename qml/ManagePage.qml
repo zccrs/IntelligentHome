@@ -1,58 +1,81 @@
 import QtQuick 2.0
 import "Component"
 
-Column{
+StackPage{
     id: root
 
-    spacing: 10
+    pageName: "Manage"
 
-    TreeView{
-        title: qsTr("Device management")
-        width: root.width
+    Flickable{
+        anchors.fill: parent
 
-        model: ListModel{
-            ListElement{
-                title: qsTr("device1")
+        contentHeight: tree1.height+tree2.height+tree3.height+tree4.height
+
+        Column{
+            spacing: 20
+            anchors.fill: parent
+
+            TreeView{
+                id: tree1
+
+                title: qsTr("Device management")
+                iconSource2: "qrc:/images/setting_icon.png"
+                width: root.width
+
+                model: ListModel{
+                    ListElement{
+                        title: qsTr("device1")
+                    }
+                }
+
+                delegate: TreeViewDelegate{}
+            }
+            TreeView{
+                id: tree2
+
+                title: qsTr("Camera management")
+                iconSource2: "qrc:/images/setting_icon.png"
+                width: root.width
+
+                model: ListModel{
+                    ListElement{
+                        title: qsTr("camera1")
+                    }
+                }
+
+                delegate: TreeViewDelegate{}
+            }
+            TreeView{
+                id: tree3
+
+                title: qsTr("Room management")
+                iconSource2: "qrc:/images/setting_icon.png"
+                width: root.width
+
+                model: ListModel{
+                    ListElement{
+                        title: qsTr("room1")
+                    }
+                }
+
+                delegate: TreeViewDelegate{}
+            }
+            TreeView{
+                id: tree4
+
+                title: qsTr("Profiles management")
+                iconSource2: "qrc:/images/setting_icon.png"
+                width: root.width
+
+                model: ListModel{
+                    ListElement{
+                        title: qsTr("profiles1")
+                    }
+                }
+
+                delegate: TreeViewDelegate{}
             }
         }
-
-        delegate: TreeViewDelegate{}
-    }
-    TreeView{
-        title: qsTr("Camera management")
-        width: root.width
-
-        model: ListModel{
-            ListElement{
-                title: qsTr("camera1")
-            }
-        }
-
-        delegate: TreeViewDelegate{}
-    }
-    TreeView{
-        title: qsTr("Room management")
-        width: root.width
-
-        model: ListModel{
-            ListElement{
-                title: qsTr("room1")
-            }
-        }
-
-        delegate: TreeViewDelegate{}
-    }
-    TreeView{
-        title: qsTr("Profiles management")
-        width: root.width
-
-        model: ListModel{
-            ListElement{
-                title: qsTr("profiles1")
-            }
-        }
-
-        delegate: TreeViewDelegate{}
     }
 }
 

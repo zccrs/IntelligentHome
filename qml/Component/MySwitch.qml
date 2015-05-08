@@ -14,7 +14,7 @@ Item{
     Text{
         id:switchText
         text:switch_text
-        font.pixelSize: 22
+        font.pointSize: 20
         anchors.left: parent.left
         height:off_on.height
         verticalAlignment: Text.AlignVCenter

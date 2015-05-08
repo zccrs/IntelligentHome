@@ -17,5 +17,6 @@
         <file>qml/Component/InputDialog.qml</file>
         <file>qml/ProfilesPage.qml</file>
         <file>qml/ProfilesSettings.qml</file>
+        <file>qml/ActionSelectionPage.qml</file>
     </qresource>
 </RCC>

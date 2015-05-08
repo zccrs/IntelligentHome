@@ -67,7 +67,7 @@ StackPage {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.margins: 10
-            switch_text: qsTr("Allow the background service")
+            switch_text: qsTr("Background service")
 
             KeyNavigation.down: auto_updata_app
         }
@@ -79,7 +79,7 @@ StackPage {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.margins: 10
-            switch_text: qsTr("Automatic check for updates")
+            switch_text: qsTr("Auto update")
 
             KeyNavigation.up: back_service_switch
             //KeyNavigation.down: titleFontSize
