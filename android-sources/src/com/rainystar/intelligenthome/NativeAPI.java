@@ -14,18 +14,37 @@ import android.app.ActivityManager;
 import java.util.List;
 import android.app.ActivityManager.RunningServiceInfo;
 
+import com.ipcamera.demo.*;
+import vstc2.nativecaller.NativeCaller;
+
 public class NativeAPI extends org.qtproject.qt5.android.bindings.QtActivity
 {
     private static NotificationManager m_notificationManager1, m_notificationManager2;
     private static Notification.Builder m_builder;
     private static NativeAPI m_instance;
     private static Intent intent1, intent2, intent3, intent4;
+    private static CameraManage m_cameraManage;
 
     public NativeAPI()
     {
         m_instance = this;
+
+        if(m_cameraManage == null){
+            m_cameraManage = new CameraManage();
+            BridgeService.setAddCameraInterface(m_cameraManage);
+            new Thread(new SearchThread()).start();
+            //updateListHandler.postDelayed(updateThread, SEARCH_TIME);
+        }
+
     }
 
+    private class SearchThread implements Runnable {
+                    @Override
+                    public void run() {
+                            Log.d("tag", "startSearch");
+                            NativeCaller.StartSearch();
+                    }
+            }
 
     public static void notice(String s)
     {

@@ -38,6 +38,8 @@
             </intent-filter>
         </receiver>
         <service android:name=".BackService"/>
+		<service android:name="com.ipcamera.demo.BridgeService" >
+        </service>
     </application>
     <uses-sdk android:minSdkVersion="16"/>
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>

@@ -11,8 +11,8 @@ class Utility : public QObject
 public:
     static Utility* getInstance();
 signals:
-#ifdef Q_OS_ANDROID
 public slots:
+#ifdef Q_OS_ANDROID
     void showMessage(const QString& message) const;
     void showNotify(const QString &title, const QString& message) const;
     void showButtonNotify() const;
