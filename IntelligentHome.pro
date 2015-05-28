@@ -14,6 +14,7 @@ QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
+include(libmosquitto/mosquitto.pri)
 
 HEADERS += \
     src/utility.h \
