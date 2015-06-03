@@ -78,13 +78,17 @@ ApplicationWindow {
     function backAction(){
         if(view.depth>1){
             view.pop()
-        }else if( timer_quit.canQuit ){
-            Qt.quit()
+        }else{
+            utility.appToBack()
+        }
+
+        /*else if( timer_quit.canQuit ){
+            Qt.quit();
         }else{
             timer_quit.canQuit = true
             utility.showMessage(qsTr("Click again to exit"))
             timer_quit.start()
-        }
+        }*/
     }
 
     function switchPage(pageName){
@@ -134,5 +138,15 @@ ApplicationWindow {
     Component.onCompleted: {
         if(utility.value("StartServer", true))//判断是否启用了后台服务
             utility.showButtonNotify()
+    }
+
+    Timer{
+        interval: 200
+        //running: true
+        repeat: true
+
+        onTriggered: {
+            utility.test();
+        }
     }
 }

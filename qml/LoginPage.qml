@@ -1,5 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
+import com.star.intelligenthome 1.0
+import QtMultimedia 5.4
 import "Component"
 
 StackPage{
@@ -240,7 +242,7 @@ StackPage{
                 id: localLoginButton
 
                 width: parent.width
-                //enabled: inputEmail.text!=""&&inputPassword.text!=""
+                enabled: inputEmail.text!=""&&inputPassword.text!=""
                 text: qsTr("Local Login")
                 KeyNavigation.down: inputEmail
                 KeyNavigation.up: buttonLogin
@@ -252,5 +254,30 @@ StackPage{
                 }
             }
         }
+    }
+
+    Button{
+        text: qsTr("Local Login")
+        anchors.bottom: parent.bottom
+
+        onClicked: {
+            utility.showMessage("搜索中。。。")
+            utility.connectCamera("VSTC699662MRHBZ");
+        }
+    }
+
+    CameraVideo{
+        id: video
+
+        Component.onCompleted: {
+            utility.setDrawImage(video)
+        }
+    }
+
+    VideoOutput{
+        source: video
+
+        width: parent.width
+        height: width*0.5625
     }
 }

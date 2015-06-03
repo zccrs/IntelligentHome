@@ -3,15 +3,24 @@
 #include <QQmlContext>
 #include <QDebug>
 #include <QScreen>
+#include <QtQml>
 #include "utility.h"
+#include "video.h"
+
+#define RegisterPlugin(Plugin) \
+    qmlRegisterType<Plugin>("com.star.intelligenthome", 1, 0, #Plugin)
+
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
+    app.setQuitOnLastWindowClosed(false);
     app.setApplicationName("IntelligentHome");
     app.setOrganizationName("Star");
     app.setApplicationVersion("1.0.0");
+
+    RegisterPlugin(CameraVideo);
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("utility", Utility::getInstance());

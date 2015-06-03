@@ -5,8 +5,8 @@ import android.content.Context;
 
 public class NativeCaller {
 	static {
-		System.loadLibrary("ffmpeg");
-		System.loadLibrary("vstc2_jni");
+                System.loadLibrary("ffmpeg");
+                System.loadLibrary("vstc2_jni");
 	}
 
 	public native static int RecordLocal(String uid,int bRecordLocal); 

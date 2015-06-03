@@ -22,7 +22,7 @@ public class NativeAPI extends org.qtproject.qt5.android.bindings.QtActivity
     private static NotificationManager m_notificationManager1, m_notificationManager2;
     private static Notification.Builder m_builder;
     private static NativeAPI m_instance;
-    private static Intent intent1, intent2, intent3, intent4;
+    private static Intent intent1, intent2, intent3, intent4, intent5;
     private static CameraManage m_cameraManage;
 
     public NativeAPI()
@@ -32,19 +32,75 @@ public class NativeAPI extends org.qtproject.qt5.android.bindings.QtActivity
         if(m_cameraManage == null){
             m_cameraManage = new CameraManage();
             BridgeService.setAddCameraInterface(m_cameraManage);
-            new Thread(new SearchThread()).start();
-            //updateListHandler.postDelayed(updateThread, SEARCH_TIME);
-        }
+            BridgeService.setIpcamClientInterface(m_cameraManage);
+            BridgeService.setPlayInterface(m_cameraManage);
 
+            final NativeAPI native_api = this;
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    intent5 = new Intent();
+                    intent5.setClass(native_api, BridgeService.class);
+                    native_api.startService(intent5);
+
+                    NativeCaller.PPPPInitialOther("ADCBBFAOPPJAHGJGBBGLFLAGDBJJHNJGGMBFBKHIBBNKOKLDHOBHCBOEHOKJJJKJBPMFLGCPPJMJAPDOIPNL");
+                }
+            });
+        }
     }
 
-    private class SearchThread implements Runnable {
-                    @Override
-                    public void run() {
-                            Log.d("tag", "startSearch");
-                            NativeCaller.StartSearch();
-                    }
+    public static void moveTaskToBack()
+    {
+        m_instance.moveTaskToBack(true);
+    }
+
+    public static void test()
+    {
+        Communication co = new Communication();
+        byte[] rgb = ("fdsafdsafsadfdsafdsfdsfdsafdsafsadfsdfdsa").getBytes();
+        co.streamingVideo(rgb, 100, 200);
+    }
+
+    public static void startCameraSearch()
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("tag", "startSearch");
+                NativeCaller.StartSearch();
             }
+        }).start();
+    }
+
+    public static void stopCaceraSearch()
+    {
+        NativeCaller.StopSearch();
+    }
+
+    public static void connectCamera(final String did, final String user, final String pwd)
+    {
+        NativeCaller.Init();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(100);
+                    int result = NativeCaller.StartPPPP(did, user, pwd,1,"");
+                    Log.d("connectCamera:", String.valueOf(result));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public static void disconnectCamera(String did)
+    {
+        int result = NativeCaller.StopPPPP(did);
+
+        Log.d("disconnectCamera", String.valueOf(result));
+    }
+
 
     public static void notice(String s)
     {
@@ -123,6 +179,7 @@ public class NativeAPI extends org.qtproject.qt5.android.bindings.QtActivity
         m_instance.stopService(intent3);
         m_instance.stopService(intent4);
         m_notificationManager2.cancelAll();
+        m_instance.stopService(intent5);
     }
 
 }

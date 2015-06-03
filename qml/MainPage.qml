@@ -8,7 +8,6 @@ StackPage{
 
     pageName: "Main"
 
-
     GridView{
         id: gridview
 

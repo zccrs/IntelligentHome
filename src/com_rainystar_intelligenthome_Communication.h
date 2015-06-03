@@ -10,18 +10,26 @@ extern "C" {
 /*
  * Class:     com_rainystar_intelligenthome_Communication
  * Method:    callQt
- * Signature: (I)V
+ * Signature: (I)I
  */
-JNIEXPORT int JNICALL Java_com_rainystar_intelligenthome_Communication_callQt__I
+JNIEXPORT jint JNICALL Java_com_rainystar_intelligenthome_Communication_callQt__I
   (JNIEnv *, jobject, jint);
 
 /*
  * Class:     com_rainystar_intelligenthome_Communication
  * Method:    callQt
- * Signature: (Ljava/lang/String;)V
+ * Signature: (Ljava/lang/String;)I
  */
-JNIEXPORT int JNICALL Java_com_rainystar_intelligenthome_Communication_callQt__Ljava_lang_String_2
+JNIEXPORT jint JNICALL Java_com_rainystar_intelligenthome_Communication_callQt__Ljava_lang_String_2
   (JNIEnv *, jobject, jstring);
+
+/*
+ * Class:     com_rainystar_intelligenthome_Communication
+ * Method:    streamingVideo
+ * Signature: ([BII)V
+ */
+JNIEXPORT void JNICALL Java_com_rainystar_intelligenthome_Communication_streamingVideo
+  (JNIEnv *, jobject, jbyteArray, jint, jint);
 
 #ifdef __cplusplus
 }

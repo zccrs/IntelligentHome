@@ -1,10 +1,11 @@
 TEMPLATE = app
 
-QT += qml quick
+QT += qml quick multimedia
 
 SOURCES += main.cpp \
     src/utility.cpp \
-    src/starencryption.cpp
+    src/starencryption.cpp \
+    src/video.cpp
 
 RESOURCES += qml.qrc images.qrc
 
@@ -18,7 +19,8 @@ include(libmosquitto/mosquitto.pri)
 
 HEADERS += \
     src/utility.h \
-    src/starencryption.h
+    src/starencryption.h \
+    src/video.h
 
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources

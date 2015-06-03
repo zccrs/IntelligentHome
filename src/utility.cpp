@@ -2,10 +2,16 @@
 #include <QDebug>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QTimer>
 #include <QGuiApplication>
 #include "starencryption.h"
+#include "video.h"
+
+Utility* Utility::me = new Utility;
+CameraVideo* draw_image = NULL;
 
 #ifdef Q_OS_ANDROID
+
 #include <QtAndroidExtras/QAndroidJniObject>
 #include "com_rainystar_intelligenthome_Communication.h"
 
@@ -25,15 +31,35 @@ JNIEXPORT int JNICALL Java_com_rainystar_intelligenthome_Communication_callQt__L
     env->ReleaseStringUTFChars(code,str);
     return 0;
 }
-#endif
 
-Utility* Utility::me = new Utility;
+JNIEXPORT void JNICALL Java_com_rainystar_intelligenthome_Communication_streamingVideo
+  (JNIEnv *env, jobject, jbyteArray byte, jint width, jint height)
+{
+    const char *data = (char*)env->GetByteArrayElements(byte, NULL);
+
+    if(draw_image){
+        draw_image->setImageData(data, width, height);
+    }
+
+    env->ReleaseByteArrayElements(byte, (jbyte*)data, 0);
+}
+
+#endif
 
 Utility *Utility::getInstance()
 {
     return me;
 }
+
 #ifdef Q_OS_ANDROID
+
+void callVoidFun(const char *methodName)
+{
+    QAndroidJniObject::callStaticMethod<void>("com/rainystar/intelligenthome/NativeAPI",
+                                              methodName,
+                                              "()V");
+}
+
 void Utility::showMessage(const QString &message) const
 {
     QAndroidJniObject javaNotification = QAndroidJniObject::fromString(message);
@@ -56,16 +82,47 @@ void Utility::showNotify(const QString &title, const QString &message) const
 
 void Utility::showButtonNotify() const
 {
-    QAndroidJniObject::callStaticMethod<void>("com/rainystar/intelligenthome/NativeAPI",
-                                              "showButtonNotify",
-                                              "()V");
+    callVoidFun("showButtonNotify");
 }
 
 void Utility::quit() const
 {
+    callVoidFun("quit");
+}
+
+void Utility::appToBack() const
+{
+    callVoidFun("moveTaskToBack");
+}
+
+void Utility::startCameraSearch() const
+{
+    callVoidFun("startCameraSearch");
+    QTimer::singleShot(200, this, SLOT(stopCaceraSearch()));
+    //200ms后停止搜索
+}
+
+void Utility::stopCaceraSearch() const
+{
+    callVoidFun("stopCaceraSearch");
+}
+
+void Utility::connectCamera(const QString &did, const QString &user, const QString &pwd) const
+{
+    QAndroidJniObject arg1 = QAndroidJniObject::fromString(did);
+    QAndroidJniObject arg2 = QAndroidJniObject::fromString(user);
+    QAndroidJniObject arg3 = QAndroidJniObject::fromString(pwd);
     QAndroidJniObject::callStaticMethod<void>("com/rainystar/intelligenthome/NativeAPI",
-                                              "quit",
-                                              "()V");
+                                              "connectCamera",
+                                              "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+                                              arg1.object<jstring>(),
+                                              arg2.object<jstring>(),
+                                              arg3.object<jstring>());
+}
+
+void Utility::test()
+{
+    callVoidFun("test");
 }
 
 #endif
@@ -96,6 +153,11 @@ QString Utility::stringUncrypt(const QString &content_hex, QString key)
 QString Utility::appVersion() const
 {
     return qApp->applicationVersion();
+}
+
+void Utility::setDrawImage(CameraVideo *canvas)
+{
+    draw_image = canvas;
 }
 
 Utility::Utility(QObject *parent) : QObject(parent)
