@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    app.setQuitOnLastWindowClosed(false);
+    //app.setQuitOnLastWindowClosed(false);
     app.setApplicationName("IntelligentHome");
     app.setOrganizationName("Star");
     app.setApplicationVersion("1.0.0");

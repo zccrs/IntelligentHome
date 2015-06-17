@@ -10,9 +10,10 @@ ApplicationWindow {
     property bool online: false
 
     visible: true
+
     title: view.currentItem.pageName
 
-    menuBar: MenuBar {
+    /*menuBar: MenuBar {
         Menu {
             title: qsTr("&MenuList")
 
@@ -73,7 +74,7 @@ ApplicationWindow {
                 }
             }
         }
-    }
+    }*/
 
     function backAction(){
         if(view.depth>1){
@@ -81,14 +82,6 @@ ApplicationWindow {
         }else{
             utility.appToBack()
         }
-
-        /*else if( timer_quit.canQuit ){
-            Qt.quit();
-        }else{
-            timer_quit.canQuit = true
-            utility.showMessage(qsTr("Click again to exit"))
-            timer_quit.start()
-        }*/
     }
 
     function switchPage(pageName){
@@ -103,7 +96,11 @@ ApplicationWindow {
         id: view
 
         focus: true
-        anchors.fill: parent
+        width: parent.width
+        anchors{
+            top: navigation_bar.bottom
+            bottom: toolbar.top
+        }
 
         Keys.onBackPressed: {
             event.accepted = true
@@ -111,8 +108,20 @@ ApplicationWindow {
         }
 
         Component.onCompleted: {
-            push(Qt.resolvedUrl("LoginPage.qml"))
+            push(Qt.resolvedUrl("MainPage.qml"))
         }
+    }
+
+    NavigationBar{
+        id: navigation_bar
+
+        title: main.title
+    }
+
+    ToolsBar{
+        id: toolbar
+
+        anchors.bottom: parent.bottom
     }
 
     Timer{
@@ -138,15 +147,5 @@ ApplicationWindow {
     Component.onCompleted: {
         if(utility.value("StartServer", true))//判断是否启用了后台服务
             utility.showButtonNotify()
-    }
-
-    Timer{
-        interval: 200
-        //running: true
-        repeat: true
-
-        onTriggered: {
-            utility.test();
-        }
     }
 }

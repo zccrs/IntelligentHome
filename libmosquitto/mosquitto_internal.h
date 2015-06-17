@@ -42,6 +42,7 @@ Contributors:
 
 #ifdef WIN32
 #	if _MSC_VER < 1600
+        typedef char int8_t;
 		typedef unsigned char uint8_t;
 		typedef unsigned short uint16_t;
 		typedef unsigned int uint32_t;

@@ -6,158 +6,147 @@ import "Component"
 StackPage{
     id: root
 
-    pageName: "Main"
+    pageName: "首页"
 
-    GridView{
-        id: gridview
-
-        cellWidth: root.width/2
-        cellHeight: cellWidth
+    Image{
         anchors.fill: parent
-        clip: true
-        highlight: Item{}
 
-        model: ListModel{
-            ListElement{
-                title: "room1"
-                imageSource: "qrc:/images/room.jpg"
-            }
-            ListElement{
-                title: "room2"
-                imageSource: "qrc:/images/room.jpg"
-            }
-            ListElement{
-                title: "room3"
-                imageSource: "qrc:/images/room.jpg"
-            }
-            ListElement{
-                title: ""
-                imageSource: "qrc:/images/add_icon.png"
-            }
-        }
-
-        delegate: ToolButton{
-            id: viewitemroot
-
-            property bool editing: false
-            property bool menuIsVisible: false
-
-            width: root.width/2
-            height: width
-
-            Image{
-                source: imageSource
-                anchors.centerIn: parent
-                sourceSize.width: root.width/3
-            }
-
-            Text{
-                id: mytitle
-
-                visible: !parent.editing
-                anchors{
-                    bottom: parent.bottom
-                    horizontalCenter: parent.horizontalCenter
-                }
-                text: title
-                font.pointSize: 20
-
-                MouseArea{
-                    enabled: parent.text!=""
-                    anchors.fill: parent
-
-                    onDoubleClicked: {
-                        viewitemroot.editing = true
-                        input.forceActiveFocus()
-                    }
-                }
-            }
-
-            TextField{
-                id: input
-
-                visible: parent.editing
-                text: title
-                width: parent.width-20
-                anchors{
-                    bottom: parent.bottom
-                    horizontalCenter: parent.horizontalCenter
-                }
-            }
-
-            Connections{
-                target: viewitemroot.editing?Qt.inputMethod:null
-
-                onVisibleChanged:{
-                    if( !Qt.inputMethod.visible ){
-                        mytitle.text = input.text
-                        viewitemroot.editing = false
-                        viewitemroot.focus = false
-                    }
-                }
-            }
-
-            Timer{
-                id: timer
-
-                interval: 1000
-                onTriggered: {
-                    contextMenu.popup()
-                }
-            }
-
-            Menu{
-                id: contextMenu
-
-                MenuItem{
-                    text: qsTr("remove")
-
-                    onTriggered: {
-                        gridview.model.remove(index)
-                    }
-                }
-
-                onPopupVisibleChanged: {
-                    viewitemroot.menuIsVisible = !viewitemroot.menuIsVisible
-                }
-            }
-
-            onClicked: {
-                if(menuIsVisible)
-                    return
-
-                if(index == gridview.count-1){
-                    Qt.inputMethod.hide()
-                    input_dialog.open()
-                }else{
-                    if( Qt.inputMethod.visible )
-                        return
-                    main.switchPage("RoomPage.qml")
-                }
-            }
-
-            onPressedChanged:{
-                if(index == gridview.count-1)
-                    return
-
-                if(pressed){
-                    timer.start()
-                }else{
-                    timer.stop()
-                }
-            }
-        }
+        source: "qrc:/images/home_page/背景.png"
+        sourceSize.width: width
+        sourceSize.height: height
     }
 
-    InputDialog{
-        id: input_dialog
+    BorderImage {
+        id: topbar
 
-        title: qsTr("Plase input room name")
+        source: "qrc:/images/点击房间页/白色框.png"
+        width: parent.width
+        visible: false
+        anchors{
+            top: parent.top
+            bottom: disk.top
+        }
 
-        onOk: {
-            gridview.model.insert(gridview.model.count-1,
-                                  {title: input_dialog.contentText,
-                                  imageSource: "qrc:/images/room.jpg"})
+        border.left: 15; border.top: 15
+        border.right: 15; border.bottom: 15
+    }
+
+
+    Image{
+        source: "qrc:/images/home_page/logo背景_左.png"
+        width: parent.width/2
+        anchors.verticalCenter: parent.verticalCenter
+        fillMode: Image.PreserveAspectFit
+    }
+    Image{
+        id: disk
+
+        source: "qrc:/images/home_page/logo背景_右.png"
+        width: parent.width/2
+        anchors{
+            verticalCenter: parent.verticalCenter
+            right: parent.right
+        }
+
+        fillMode: Image.PreserveAspectFit
+
+        Image{
+            anchors.centerIn: parent
+            source: "qrc:/images/home_page/logo.png"
+            height: parent.height/6
+            fillMode: Image.PreserveAspectFit
+        }
+
+        PathView{
+            id: pathview
+
+            anchors.centerIn: parent
+            height: parent.height*0.6
+            width: height
+
+            path: Path {
+                startX: pathview.height/2; startY: 0
+                PathArc {
+                    x: pathview.height/2; y: pathview.height
+                    direction: PathArc.Counterclockwise
+                    radiusX: pathview.height/2; radiusY: radiusX
+                    useLargeArc: true
+                }
+                PathArc {
+                    x: pathview.height/2; y: 0
+                    direction: PathArc.Counterclockwise
+                    radiusX: pathview.height/2; radiusY: radiusX
+                    useLargeArc: true
+                }
+            }
+
+            model: ListModel{
+                ListElement{
+                    name: "回家"
+                    icon: "qrc:/images/home_page/回家.png"
+                }
+                ListElement{
+                    name: "情景模式"
+                    icon : "qrc:/images/home_page/情景模式.png"
+                }
+                ListElement{
+                    name: "房间"
+                    icon: "qrc:/images/home_page/房间.png"
+                }
+                ListElement{
+                    name: "设备"
+                    icon: "qrc:/images/home_page/设备.png"
+                }
+                ListElement{
+                    name: "背景音乐"
+                    icon: "qrc:/images/home_page/背景音乐.png"
+                }
+                ListElement{
+                    name: "布防"
+                    icon: "qrc:/images/home_page/布防.png"
+                }
+                ListElement{
+                    name: "智能感应"
+                    icon: "qrc:/images/home_page/智能感知.png"
+                }
+            }
+            delegate: Item{
+                width: Math.max(item_icon.width, text.implicitWidth)
+                height: item_icon.implicitHeight+text.implicitHeight+text.anchors.topMargin
+
+                Image{
+                    id: item_icon
+
+                    source: icon
+                    width: disk.width/7
+                    fillMode: Image.PreserveAspectFit
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+                Text{
+                    id: text
+
+                    anchors{
+                        top: item_icon.bottom
+                        topMargin: disk.width/15
+                        horizontalCenter: item_icon.horizontalCenter
+                    }
+                    text: name
+                    color: "white"
+                    font.pointSize: 10
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        if(name == "房间"){
+
+                        }else if(name == "情景模式"){
+
+                        }
+
+                        topbar.visible = true
+                    }
+                }
+            }
         }
     }
 }

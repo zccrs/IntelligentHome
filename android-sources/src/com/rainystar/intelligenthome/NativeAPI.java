@@ -54,13 +54,6 @@ public class NativeAPI extends org.qtproject.qt5.android.bindings.QtActivity
         m_instance.moveTaskToBack(true);
     }
 
-    public static void test()
-    {
-        Communication co = new Communication();
-        byte[] rgb = ("fdsafdsafsadfdsafdsfdsfdsafdsafsadfsdfdsa").getBytes();
-        co.streamingVideo(rgb, 100, 200);
-    }
-
     public static void startCameraSearch()
     {
         new Thread(new Runnable() {

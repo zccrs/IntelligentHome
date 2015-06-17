@@ -18,5 +18,7 @@
         <file>qml/ProfilesPage.qml</file>
         <file>qml/ProfilesSettings.qml</file>
         <file>qml/ActionSelectionPage.qml</file>
+        <file>qml/NavigationBar.qml</file>
+        <file>qml/ToolsBar.qml</file>
     </qresource>
 </RCC>

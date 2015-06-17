@@ -7,7 +7,7 @@ import "Component"
 StackPage{
     pageName: "Login"
 
-    Flickable{
+    /*Flickable{
         id: root
 
         clip: true
@@ -254,30 +254,40 @@ StackPage{
                 }
             }
         }
-    }
+    }*/
 
-    Button{
-        text: qsTr("Local Login")
-        anchors.bottom: parent.bottom
+    Column{
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 20
+        Row{
+            spacing: 20
 
-        onClicked: {
-            utility.showMessage("搜索中。。。")
-            utility.connectCamera("VSTC699662MRHBZ");
+            Text{
+                text: "灯1"
+            }
+
+            Switch{
+
+            }
         }
-    }
+        Row{
+            spacing: 20
 
-    CameraVideo{
-        id: video
+            Text{
+                text: "灯2"
+            }
 
-        Component.onCompleted: {
-            utility.setDrawImage(video)
+            Switch{
+
+            }
         }
-    }
 
-    VideoOutput{
-        source: video
+        Button{
+            text: "button1"
+        }
 
-        width: parent.width
-        height: width*0.5625
+        Button{
+            text: "button2"
+        }
     }
 }
