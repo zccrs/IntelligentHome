@@ -20,5 +20,6 @@
         <file>qml/ActionSelectionPage.qml</file>
         <file>qml/NavigationBar.qml</file>
         <file>qml/ToolsBar.qml</file>
+        <file>qml/LeftMenuBar.qml</file>
     </qresource>
 </RCC>

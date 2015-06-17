@@ -8,10 +8,8 @@ ApplicationWindow {
     id: main
 
     property bool online: false
-
-    visible: true
-
     title: view.currentItem.pageName
+    visible: true
 
     /*menuBar: MenuBar {
         Menu {
@@ -92,55 +90,159 @@ ApplicationWindow {
         }
     }
 
-    StackView{
-        id: view
+    Item{
+        id: root_item
 
-        focus: true
-        width: parent.width
-        anchors{
-            top: navigation_bar.bottom
-            bottom: toolbar.top
+        width: screen.availableSize.width
+        height: screen.availableSize.height
+
+        function openOrCloseMenuBar(){
+            if(main_item.x>leftmenubar.width/2){
+                main_item_animation.to = leftmenubar.width
+            }else{
+                main_item_animation.to = 0
+            }
+            main_item_animation.start()
         }
 
-        Keys.onBackPressed: {
-            event.accepted = true
-            backAction()
+        Image{
+            anchors.fill: parent
+            source: "qrc:/images/侧滑框/侧滑框大背景.png"
         }
 
-        Component.onCompleted: {
-            push(Qt.resolvedUrl("MainPage.qml"))
+        MouseArea{
+            id: main_mouse
+
+            anchors.fill: parent
+            //propagateComposedEvents: true
+            drag{
+                target: main_item
+
+                axis: Drag.XAxis
+                minimumX: 0
+                maximumX: leftmenubar.width
+            }
+
+            onReleased: root_item.openOrCloseMenuBar()
         }
-    }
 
-    NavigationBar{
-        id: navigation_bar
+        LeftMenuBar{
+            id: leftmenubar
 
-        title: main.title
-    }
+            scale: 0.75+main_item.x/leftmenubar.width/4
 
-    ToolsBar{
-        id: toolbar
-
-        anchors.bottom: parent.bottom
-    }
-
-    Timer{
-        id: timer_quit
-
-        property bool canQuit: false
-
-        interval: 2000
-        onTriggered: {
-            canQuit = false
+            width: parent.width*0.6
+            anchors{
+                bottom: parent.bottom
+                bottomMargin: width/10
+                left: parent.left
+                leftMargin: width/10
+            }
         }
-    }
 
-    MessageDialog{
-        id: messageDialog
+        Rectangle{
+            anchors.fill: parent
+            color: "black"
+            opacity: 1-main_item.x/leftmenubar.width
+        }
 
-        function show(caption) {
-            messageDialog.text = caption;
-            messageDialog.open();
+        Item{
+            id: main_item
+
+            width: parent.width
+            height: parent.height
+
+            MouseArea{
+                property real oldX
+
+                anchors.fill: parent
+
+                drag{
+                    target: main_item
+
+                    axis: Drag.XAxis
+                    minimumX: 0
+                    maximumX: leftmenubar.width
+                }
+
+                onPressed: {
+                    oldX = mouseX
+                }
+
+                onReleased: {
+                    if(oldX == mouseX){
+                        main_item_animation.to = 0
+                        main_item_animation.start()
+                    }else{
+                        root_item.openOrCloseMenuBar()
+                    }
+                }
+            }
+
+            NumberAnimation on x {
+                id: main_item_animation
+
+                duration: 300
+                easing.type: Easing.InOutQuad
+            }
+
+            scale: 1-x/leftmenubar.width*0.17
+
+            StackView{
+                id: view
+
+                focus: true
+                width: parent.width
+                anchors{
+                    top: navigation_bar.bottom
+                    bottom: toolbar.top
+                }
+
+                Keys.onBackPressed: {
+                    event.accepted = true
+                    backAction()
+                }
+
+                Component.onCompleted: {
+                    push(Qt.resolvedUrl("MainPage.qml"))
+                }
+            }
+
+            NavigationBar{
+                id: navigation_bar
+
+                title: main.title
+                onButtonClicked: {
+                    main_item_animation.to = leftmenubar.width
+                    main_item_animation.start()
+                }
+            }
+
+            ToolsBar{
+                id: toolbar
+
+                anchors.bottom: parent.bottom
+            }
+        }
+
+        Timer{
+            id: timer_quit
+
+            property bool canQuit: false
+
+            interval: 2000
+            onTriggered: {
+                canQuit = false
+            }
+        }
+
+        MessageDialog{
+            id: messageDialog
+
+            function show(caption) {
+                messageDialog.text = caption;
+                messageDialog.open();
+            }
         }
     }
 

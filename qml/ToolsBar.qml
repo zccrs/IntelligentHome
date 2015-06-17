@@ -4,7 +4,7 @@ Image{
     id: root
 
     source: "qrc:/images/home_page/标签栏背景.png"
-    width: screen.size.width
+    width: parent.width
     fillMode: Image.PreserveAspectFit
 
     Row{

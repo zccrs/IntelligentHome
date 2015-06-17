@@ -27,8 +27,8 @@ StackPage{
             bottom: disk.top
         }
 
-        border.left: 15; border.top: 15
-        border.right: 15; border.bottom: 15
+        border.left: 10; border.top: 10
+        border.right: 10; border.bottom: 10
 
         GridView{
             id: gridview
@@ -36,13 +36,13 @@ StackPage{
             anchors{
                 fill: parent
                 topMargin: topbar.border.top
-                leftMargin: topbar.border.left
+                leftMargin: topbar.border.left+30
                 rightMargin: topbar.border.right
                 bottomMargin: topbar.border.bottom
             }
 
             cellWidth: height
-            cellHeight: cellWidth
+            cellHeight: height
             snapMode: GridView.SnapToRow
             flow: GridView.FlowTopToBottom
 
@@ -54,6 +54,7 @@ StackPage{
                     source: "qrc:/images/点击房间页/00_r3_c9.png"
                     anchors{
                         fill: parent
+                        margins: parent.width/10
                     }
                 }
             }
@@ -65,6 +66,7 @@ StackPage{
                 Image{
                     anchors{
                         fill: parent
+                        margins: parent.width/10
                     }
                     source: icon
                     Text{
