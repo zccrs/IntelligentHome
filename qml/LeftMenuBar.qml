@@ -27,7 +27,7 @@ Item{
                 Image{
                     anchors{
                         fill: parent
-                        margins: 20
+                        margins: logo.width/5
                     }
 
                     source: "qrc:/images/home_page/logo.png"
