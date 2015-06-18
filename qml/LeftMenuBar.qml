@@ -56,7 +56,7 @@ Item{
                 id: text_phone_number
 
                 text: "免费电话：400-030-8767"
-                color: "white"
+                color: "#b9b9c8"
                 font.pointSize: 12
             }
             Image{
@@ -139,7 +139,7 @@ Item{
                             id: menu_name
 
                             text: name
-                            color: "white"
+                            color: "#b9b9c8"
                             font.pointSize: 14
                         }
                     }
@@ -183,7 +183,7 @@ Item{
                 id: text_setting
 
                 text: "设置"
-                color: "white"
+                color: "#b9b9c8"
                 font.pointSize: 14
             }
         }

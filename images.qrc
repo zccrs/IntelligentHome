@@ -22,14 +22,6 @@
         <file>images/home_page/logo背景_左.png</file>
         <file>images/侧滑框/》.png</file>
         <file>images/侧滑框/00.png</file>
-        <file>images/侧滑框/01_r1_c2.png</file>
-        <file>images/侧滑框/01_r3_c1.png</file>
-        <file>images/侧滑框/01_r5_c3.png</file>
-        <file>images/侧滑框/01_r7_c4.png</file>
-        <file>images/侧滑框/01_r9_c4.png</file>
-        <file>images/侧滑框/01_r11_c4.png</file>
-        <file>images/侧滑框/01_r13_c5.png</file>
-        <file>images/侧滑框/01_r15_c4.png</file>
         <file>images/侧滑框/logo背景.png</file>
         <file>images/侧滑框/拨打图标.png</file>
         <file>images/侧滑框/侧滑框大背景.png</file>
@@ -48,5 +40,15 @@
         <file>images/点击房间页/10_r3_c1.png</file>
         <file>images/点击房间页/10_r5_c1.png</file>
         <file>images/点击房间页/白色框.png</file>
+        <file>images/侧滑框/01_r1_c2.png</file>
+        <file>images/侧滑框/01_r3_c1.png</file>
+        <file>images/侧滑框/01_r5_c3.png</file>
+        <file>images/侧滑框/01_r7_c4.png</file>
+        <file>images/侧滑框/01_r9_c4.png</file>
+        <file>images/侧滑框/01_r11_c4.png</file>
+        <file>images/侧滑框/01_r13_c5.png</file>
+        <file>images/侧滑框/01_r15_c4.png</file>
+        <file>images/点击房间页/方框.png</file>
+        <file>images/点击房间页/蓝条.png</file>
     </qresource>
 </RCC>
