@@ -45,6 +45,7 @@ StackPage{
             cellHeight: height
             snapMode: GridView.SnapToRow
             flow: GridView.FlowTopToBottom
+            clip: true
 
             footer: Item{
                 width: gridview.cellWidth
