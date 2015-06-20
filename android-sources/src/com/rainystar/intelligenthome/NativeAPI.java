@@ -17,6 +17,9 @@ import android.app.ActivityManager.RunningServiceInfo;
 import com.ipcamera.demo.*;
 import vstc2.nativecaller.NativeCaller;
 
+import com.iflytek.cloud.SpeechUtility;
+import com.iflytek.cloud.SpeechConstant;
+
 public class NativeAPI extends org.qtproject.qt5.android.bindings.QtActivity
 {
     private static NotificationManager m_notificationManager1, m_notificationManager2;
@@ -43,6 +46,7 @@ public class NativeAPI extends org.qtproject.qt5.android.bindings.QtActivity
                     intent5.setClass(native_api, BridgeService.class);
                     native_api.startService(intent5);
 
+                    SpeechUtility.createUtility(NativeAPI.this, SpeechConstant.APPID +"=5582aa3c");
                     NativeCaller.PPPPInitialOther("ADCBBFAOPPJAHGJGBBGLFLAGDBJJHNJGGMBFBKHIBBNKOKLDHOBHCBOEHOKJJJKJBPMFLGCPPJMJAPDOIPNL");
                 }
             });

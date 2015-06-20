@@ -18,8 +18,6 @@
         <file>images/home_page/客服图标.png</file>
         <file>images/home_page/摄像机图标.png</file>
         <file>images/home_page/语音图标.png</file>
-        <file>images/home_page/logo背景_右.png</file>
-        <file>images/home_page/logo背景_左.png</file>
         <file>images/侧滑框/》.png</file>
         <file>images/侧滑框/00.png</file>
         <file>images/侧滑框/logo背景.png</file>
@@ -28,14 +26,7 @@
         <file>images/侧滑框/电话竖线.png</file>
         <file>images/侧滑框/山高任鸟飞.png</file>
         <file>images/侧滑框/直线.png</file>
-        <file>images/点击房间页/00_r1_c2.png</file>
-        <file>images/点击房间页/00_r1_c5.png</file>
-        <file>images/点击房间页/00_r1_c7.png</file>
-        <file>images/点击房间页/00_r1_c10.png</file>
         <file>images/点击房间页/00_r3_c9.png</file>
-        <file>images/点击房间页/00_r4_c1.png</file>
-        <file>images/点击房间页/00_r4_c5.png</file>
-        <file>images/点击房间页/00_r4_c7.png</file>
         <file>images/点击房间页/10_r1_c1.png</file>
         <file>images/点击房间页/10_r3_c1.png</file>
         <file>images/点击房间页/10_r5_c1.png</file>
@@ -50,5 +41,17 @@
         <file>images/侧滑框/01_r15_c4.png</file>
         <file>images/点击房间页/方框.png</file>
         <file>images/点击房间页/蓝条.png</file>
+        <file>images/home_page/大圆.png</file>
+        <file>images/home_page/首页_左.png</file>
+        <file>images/home_page/小圆_r2_c2.png</file>
+        <file>images/home_page/logo背景_右.png</file>
+        <file>images/home_page/logo背景_左.png</file>
+        <file>images/点击房间页/餐厅.png</file>
+        <file>images/点击房间页/厨房.png</file>
+        <file>images/点击房间页/次卧.png</file>
+        <file>images/点击房间页/客厅.png</file>
+        <file>images/点击房间页/书房.png</file>
+        <file>images/点击房间页/卫生间.png</file>
+        <file>images/点击房间页/主卧.png</file>
     </qresource>
 </RCC>

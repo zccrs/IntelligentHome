@@ -32,7 +32,6 @@ android {
     HEADERS += src/com_rainystar_intelligenthome_Communication.h
 
     DISTFILES += \
-        android-sources/AndroidManifest.xml \
         android-sources/src/com/rainystar/intelligenthome/NativeAPI.java \
         android-sources/res/layout/notify.xml \
         android-sources/src/com/rainystar/intelligenthome/BackService.java \
@@ -41,6 +40,9 @@ android {
         android-sources/src/com/ipcamera/demo/BridgeService.java \
         android-sources/src/com/ipcamera/demo/utilis/ContentCommon.java \
         android-sources/src/com/ipcamera/demo/CameraManage.java
-}
 
+    DISTFILES += \
+        android-sources/AndroidManifest.xml
+
+}
 

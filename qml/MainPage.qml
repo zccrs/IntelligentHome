@@ -69,8 +69,16 @@ StackPage{
                         margins: parent.width/10
                     }
                     source: icon
-                    Text{
 
+                    Image{
+                        width: parent.width
+                        source: "qrc:/images/点击房间页/蓝条.png"
+                        Text{
+                            anchors.centerIn: parent
+                            font.pointSize: 8
+                            color: "white"
+                            text: name
+                        }
                     }
 
                     MouseArea{
@@ -95,6 +103,26 @@ StackPage{
         width: parent.width/2
         anchors.verticalCenter: parent.verticalCenter
         fillMode: Image.PreserveAspectFit
+
+        Text{
+            id: ffff
+            anchors{
+                left: parent.left
+                right: parent.right
+                leftMargin: parent.height/20
+                rightMargin: parent.height/8
+                verticalCenter: parent.verticalCenter
+                verticalCenterOffset: parent.height/30
+            }
+            height: parent.implicitHeight/2.2
+
+            text: pathmodel.get(pathview.currentIndex).title
+            color: "white"
+            font.pointSize: 12
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+        }
     }
     Image{
         id: disk
@@ -146,15 +174,16 @@ StackPage{
                 ListElement{
                     name: "房间"
                     icon: "qrc:/images/home_page/房间.png"
+                    title: "房间内有各种设备存放"
                     modeldata: '{
                         "icons": [
-                            "qrc:/images/点击房间页/00_r1_c2.png",
-                            "qrc:/images/点击房间页/00_r1_c5.png",
-                            "qrc:/images/点击房间页/00_r1_c7.png",
-                            "qrc:/images/点击房间页/00_r1_c10.png",
-                            "qrc:/images/点击房间页/00_r4_c1.png",
-                            "qrc:/images/点击房间页/00_r4_c5.png",
-                            "qrc:/images/点击房间页/00_r4_c7.png"
+                            "qrc:/images/点击房间页/客厅.png",
+                            "qrc:/images/点击房间页/主卧.png",
+                            "qrc:/images/点击房间页/次卧.png",
+                            "qrc:/images/点击房间页/餐厅.png",
+                            "qrc:/images/点击房间页/卫生间.png",
+                            "qrc:/images/点击房间页/厨房.png",
+                            "qrc:/images/点击房间页/书房.png"
                         ],
                         "names": ["客厅","主卧","次卧","餐厅","卫生间","厨房","书房"]
                     }'
@@ -200,7 +229,8 @@ StackPage{
                     if(modeldata!=""){
                         var temp = JSON.parse(modeldata)
                         for(var i in temp.icons){
-                            gridmodel.append({"icon": temp.icons[i], "name": temp.names[i]})
+                            gridmodel.append({"icon": temp.icons[i],
+                                                 "name": temp.names[i]})
                         }
                     }
                 }
