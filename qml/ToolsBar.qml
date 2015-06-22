@@ -30,6 +30,14 @@ Image{
             source: "qrc:/images/home_page/语音图标.png"
             fillMode: Image.PreserveAspectFit
             width: root.width/6
+
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    utility.listenSpeech()
+                    //开始录音
+                }
+            }
         }
 
         Image{

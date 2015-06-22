@@ -46,3 +46,6 @@ android {
 
 }
 
+DISTFILES += \
+    android-sources/assets/iflytek/recognize.xml
+

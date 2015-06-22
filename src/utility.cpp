@@ -120,6 +120,11 @@ void Utility::connectCamera(const QString &did, const QString &user, const QStri
                                               arg3.object<jstring>());
 }
 
+void Utility::listenSpeech() const
+{
+    callVoidFun("listenSpeech");
+}
+
 #endif
 
 void Utility::setValue(const QString &key, const QVariant &value)

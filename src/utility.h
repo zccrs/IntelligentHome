@@ -27,6 +27,7 @@ public slots:
     void connectCamera(const QString& did,
                        const QString& user="admin",
                        const QString& pwd="888888") const;
+    void listenSpeech() const;
 #endif
     void setValue(const QString &key, const QVariant &value);
     QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;

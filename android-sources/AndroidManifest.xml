@@ -30,7 +30,7 @@
             <!--
             <meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/logo"/>
             -->
-            <!-- Splash screen --> 
+            <!-- Splash screen -->
         </activity>
         <receiver android:name=".BackService" android:exported="true">
             <intent-filter>
@@ -38,12 +38,12 @@
             </intent-filter>
         </receiver>
         <service android:name=".BackService"/>
-		<service android:name="com.ipcamera.demo.BridgeService" >
+                <service android:name="com.ipcamera.demo.BridgeService">
         </service>
     </application>
     <uses-sdk android:minSdkVersion="16"/>
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
-	<!-- %%INSERT_PERMISSIONS -->
+        <!-- %%INSERT_PERMISSIONS -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -52,5 +52,5 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<!-- %%INSERT_FEATURES -->
+        <!-- %%INSERT_FEATURES -->
 </manifest>
